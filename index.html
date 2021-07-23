@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=\, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const compareArrayByPropertyDelRepeat = (array1, array2, key) => {
+      const arrsKey = array1.map(o => o[key]);
+      const ret = [...array1, ...array2.filter(o => !arrsKey.includes(o[key]))];
+      return ret;
+    }
+
+    const compareArrayByProperty = (array1, array2, key) => {
+      const ret = array2.filter(o2 => (
+        array1.some(o1 => o2[key] === o1[key])
+      ))
+
+      return ret;
+    }
+
+    const array1 = [
+      { id: "50", active: "a", value: 10 },
+      { id: "51", active: "a", value: 11 }
+    ];
+    const array2 = [
+      { id: "53", active: "a", value: 10 },
+      { id: "51", active: "a", value: 11 },
+      { id: "52", active: "a", value: 13 }
+    ];
+
+    console.log(compareArrayByPropertyDelRepeat(array1, array2, 'id'));
+
+    console.log(compareArrayByProperty(array1, array2, 'id'));
+  </script>
+  
+</body>
+</html>
